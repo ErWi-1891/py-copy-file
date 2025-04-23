@@ -12,7 +12,7 @@ def copy_file(command: str) -> None:
         return
 
     try:
-        with open(source, "r") as file_in, open(dest, "w") as file_out:
+        with open(source, "rb") as file_in, open(dest, "wb") as file_out:
             file_out.write(file_in.read())
-    except FileNotFoundError:
+    except (FileNotFoundError, PermissionError, IsADirectoryError):
         return
